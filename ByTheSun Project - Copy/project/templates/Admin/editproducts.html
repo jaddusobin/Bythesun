@@ -1,0 +1,88 @@
+{% extends 'Admin/common_ad.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Edit Solar Products</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-white" href="/adminhome">Home</a></li>
+                    <li class="breadcrumb-item text-white active">Edit Solar Products</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid bg-light overflow-hidden px-lg-0">
+        <div class="container contact px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-9 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div  style="margin-left: 240px;">
+                        <h1 class="mb-4" style="margin-left: 300px;">Edit </h1>
+                        <h6 class="text-primary" style="margin-left: 290px;">Solar Products</h6>
+                        {% for d in edit %}
+                        <!-- <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> -->
+                        <form method="POST" enctype="multipart/form-data" class="bg-light p-5 contact-form">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" name="productname" value="{{d.Productname}}" placeholder="Enter productname" required>
+                                        <label for="name">Productname :</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="file" name="image"  class="form-control" value="{{d.Image1}}" id="email" >
+                                        <label for="email">Image :</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text"   name="price" class="form-control" value="{{d.Price}}" id="email" placeholder="Enter Price" required>
+                                        <label for="email">Price :</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text"   name="stock" class="form-control" value="{{d.Stock}}" id="email" placeholder="Enter Stock" required>
+                                        <label for="email">Stock :</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea name="description" id="message" class="form-control" cols="20" rows="4" placeholder="Enter description" required>{{d.Description}}</textarea>
+                                        <label for="subject">Description :</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary rounded-pill py-3 px-5" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        label{
+            color: black;
+        }
+    </style>
+    <!-- Contact End -->
+    {% endblock %}
+
+   

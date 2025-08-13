@@ -1,0 +1,118 @@
+{% extends 'Customer/common_cu.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">View Solar Products</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-white" href="/customerhome">Home</a></li>
+                    <li class="breadcrumb-item text-white active">View Solar Products</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid bg-light overflow-hidden px-lg-0">
+        <div class="container contact px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-11 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div>
+                        <h1 class="mb-4" style="margin-left: 500px;">View </h1>
+                        <h6 class="text-primary" style="margin-left: 490px;">Solar Products</h6><br><br>
+                        <!-- <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> -->
+                        <div class="row" style="margin-left: 110px;">
+                            <div class="col-lg-11 wow slideInUp" data-wow-delay="0.3s">
+                                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            
+                    {% if msg %}
+                        <div class="alert alert-success">
+                            {{ msg }}
+                        </div>
+                    {% endif %}
+            
+                    <!-- Search box -->
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="bookSearch" placeholder="Search by productname">
+                    </div>
+            <br>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="container-fluid">
+                    <div class="row">
+            
+                        <!-- Book cards -->
+                        {% for i in data %}
+                            <div class="col-4 book-card" data-book-name="{{ i.Productname }}">
+                                <div class="card mb-3" style="max-width: 540px;">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/static/media/{{i.Image1}}" class="img-fluid rounded-start" alt="image" height="100" width="200">
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ i.Productname }}</h5>
+                                                <p class="card-text"><strong>{{ i.Price }}</strong></p>
+                                                <!-- <p class="card-text"><small>{{ i.Description }}</small></p> -->
+                                                <a href="/viewproduct_detail?id={{i.id}}"><button type="button" class="btn btn-outline-primary">View Details</button></a><br><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+                </div>
+            
+            </div></div>
+                </section>
+            
+            <script>
+                // JavaScript for filtering books by name
+                document.getElementById('bookSearch').addEventListener('input', function () {
+                    const searchValue = this.value.toLowerCase();
+                    const bookCards = document.querySelectorAll('.book-card');
+            
+                    bookCards.forEach(function (card) {
+                        const bookName = card.getAttribute('data-book-name').toLowerCase();
+                        const isMatch = bookName.includes(searchValue);
+            
+                        // Show or hide the card based on the search result
+                        card.style.display = isMatch ? 'block' : 'none';
+                    });
+                });
+            </script> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        h5,p,small{
+            color: black;
+        }
+    </style>
+    <!-- Contact End -->
+    {% endblock %}
+
+   

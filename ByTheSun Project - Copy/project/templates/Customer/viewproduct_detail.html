@@ -1,0 +1,89 @@
+{% extends 'Customer/common_cu.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Solar Products Details</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-white" href="/customerhome">Home</a></li>
+                    <li class="breadcrumb-item text-white active">Solar Products Details</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid bg-light overflow-hidden px-lg-0">
+        <div class="container contact px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-11 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div>
+                        <h5 class="mb-4" style="margin-left: 500px;">Solar Products </h5>
+                        <h4 class="text-primary" style="margin-left: 530px;">Details</h4><br><br>
+                        <!-- <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> -->
+                        <div class="row" style="margin-left: 110px;">
+                            <div class="col-lg-11 wow slideInUp" data-wow-delay="0.3s">
+                                
+            <div class="section">
+                <div class="container-fluid">
+                    <div class="row" style="margin-left: 130px;">
+                        <br><br>
+            
+                        <form method="POST">
+                            {% csrf_token %}
+                        
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                              <div class="col-md-4">
+                                <img src="/static/media/{{data.Image1}}" class="img-fluid rounded-start" alt="...">
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card-body">
+                                <h5 class="card-title">{{data.Productname}}</h5>
+                                  <h6 class="card-title">Rate: {{data.Price}}/-</h6>
+                                  <p class="card-text">{{data.Description}}</p>
+                                  <p>Available:
+                                    {% if data.Stock == 0 %}<span style="color:red;">Out Of Stock</span>
+                                {% else %}
+                                <span style="color:red;">Instock</span>
+                            {% endif %}</p>
+                                <p>Quantity:<input type="number" class="form-control" max="{{data.Stock}}" min="1" name="qty" style="width: 70px; margin: -30px 0px 0px 80px;" value="1"></p>
+                                <input type="submit" class="btn btn-dark"  value="Order now">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                   
+            </div>
+                </div>
+            
+            </div></div>
+                </section>
+             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <style>
+        h5,h6,p,small{
+            color: black;
+        }
+    </style>
+    <!-- Contact End -->
+    {% endblock %}
+
+   

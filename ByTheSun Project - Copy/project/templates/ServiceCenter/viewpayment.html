@@ -1,0 +1,67 @@
+{% extends 'ServiceCenter/common_se.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">View Payment</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-white" href="/servicecenterhome">Home</a></li>
+                    <li class="breadcrumb-item text-white active">View Payment</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+<section>
+    <!-- Contact Start -->
+    <div class="container-fluid bg-light overflow-hidden px-lg-0">
+        <div class="container contact px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-11 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div>
+                        <h1 class="mb-4" style="margin-left: 500px;">View </h1>
+                        <h6 class="text-primary" style="margin-left: 515px;">Payment</h6><br><br>
+                        <!-- <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> -->
+                        <table class="table table-hover" cellspacing="2" cellpadding="2">
+                            <thread>
+                              <tr class="table-primary">
+                                  <th scope="col">Customer Name</th>
+                                  <th scope="col">Email</th>
+                                  <th colspan="2" scope="col">Action</th>
+                              </tr>   
+                              {% for i in data %}
+                            </thread>
+                            <tbody>
+                              <tr>
+                                  <td>{{i.customer.Username}}</td>
+                                  <td>{{i.customer.Email}}</td>
+    
+                                 <td>{{i.status}}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        td{
+            color: black;
+        }
+    </style>
+    <!-- Contact End -->
+    {% endblock %}
+
+   

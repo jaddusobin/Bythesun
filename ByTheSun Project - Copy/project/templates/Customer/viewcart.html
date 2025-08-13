@@ -1,0 +1,110 @@
+{% extends 'Customer/common_cu.html' %}
+{% load static %}
+{% for m in messages %}
+<script>
+    alert("{{m}}")
+</script>
+{% endfor %}
+{% block content %}
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">View Cart Items</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="text-white" href="/customerhome">Home</a></li>
+                    <li class="breadcrumb-item text-white active">View Cart Items</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid bg-light overflow-hidden px-lg-0">
+        <div class="container contact px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-11 contact-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div>
+                        <h1 class="mb-4" style="margin-left: 500px;">View</h1>
+                        <h6 class="text-primary" style="margin-left: 505px;">Cart Items</h6><br><br>
+                        <!-- <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> -->
+                                    {% if carts %}
+                                    <table id="shoppingCart" class="table table-hover table-condensed table-responsive">
+                                        <thead>
+                                            <tr class="table-primary">
+                                                <th style="width:60%">Product</th>
+                                                <th style="width:18%">Quantity</th>
+                                                <th style="width:12%">Price</th>
+                                                <th style="width:10%">Total</th>
+                                                <th style="width:10%">Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                          
+                                            
+                                              {% for d in carts %}
+                                              <tr>
+                                                <td data-th="Product">
+                                                    <div class="row">
+                                                        <div class="col-md-3 text-left">
+                                                            <img src="../static/media/{{d.solarproducts.Image1}}" alt="" width="100px" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                                        </div>
+                                                        <div class="col-md-9 text-left mt-sm-2">
+                                                            <h4>{{d.solarproducts.Productname}}</h4>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td data-th="Quantity">
+                                                  {{d.qty}}
+                                              </td>
+                                              <td data-th="Price">{{d.solarproducts.Price}}</td>
+                                                <td data-th="Price">{{d.amt}}</td>
+                                                <td class="actions" data-th="">
+                                                    <div class="text-right">
+                                                        <!-- <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                                            <i class="fas fa-sync"></i>
+                                                        </button> -->
+                                                        <a href="\deletecart?id={{d.id}}" class="btn btn-primary">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                              </tr>
+                                                
+                                              {% endfor %}
+                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-4 d-flex align-items-center" style="margin-bottom: 50px;margin-left: 450px;">
+                                <div class="col-sm-6 order-md-2 text-right">
+                                    <a href="/addpayment?id={{oid}}" class="btn btn-primary">Check Out</a>
+                                </div>
+                                <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+                                   
+                                </div>
+                            </div>
+                            {% else %}
+                            <h2>No items in cart</h2>
+                            {% endif %}
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<style>
+    th,td{
+        color: black;
+    }
+</style>
+    <!-- Contact End -->
+    {% endblock %}
+
+   
